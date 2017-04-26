@@ -1169,7 +1169,7 @@ FUNCTION {format.series}
 			{"\textit{"}
 		    {"\bsertitle{"}
     	if$
-    	series title.case * "}" *
+    	series * "}" *
     }
   if$
 }
@@ -1193,8 +1193,8 @@ FUNCTION {format.series.vol.booktitle}{
           editor empty$  
           author empty$ not
           and 
-            {"In " booktitle title.case "btitle" make.tag *}
-            {booktitle title.case "btitle" make.tag} 
+            {"In " booktitle "btitle" make.tag *}
+            {booktitle "btitle" make.tag} 
           if$
           output
           series empty$ 
@@ -1559,7 +1559,7 @@ FUNCTION {format.in.ed.booktitle}
 {   
 	booktitle empty$
 		'skip$
-		{booktitle title.case "btitle" make.tag  output}
+		{booktitle "btitle" make.tag  output}
 	if$
 
    	editor empty$
@@ -1873,15 +1873,15 @@ FUNCTION {article}
 		'skip$
 		'new.sentence
 	if$
-	format.title "t" change.case$ "atitle" make.tag output
+	format.title  "atitle" make.tag output
 	new.sentence
 	journal empty$
 		{fjournal empty$
 			'skip$
-			{fjournal title.case "jtitle" make.tag output}
+			{fjournal "jtitle" make.tag output}
 		 if$	
 		}
-    	{journal title.case "jtitle" make.tag output}
+    	{journal "jtitle" make.tag output}
 	if$
 	insert.comma
     volume empty$
@@ -1941,7 +1941,7 @@ FUNCTION {book}
   	if$
 	format.date output
   new.sentence
- 	format.title title.case "btitle" make.tag output
+ 	format.title "btitle" make.tag output
   series empty$
     'skip$
     'new.sentence
@@ -1968,7 +1968,7 @@ FUNCTION {booklet}
   	if$
 	format.date output
 	new.sentence
-  	format.title title.case "btitle" make.tag output
+  	format.title "btitle" make.tag output
   	format.same.end
 }
 FUNCTION {misc}
@@ -2031,13 +2031,13 @@ FUNCTION {inbook}
   		 chapter empty$
   		 	'skip$
         {"notnumber" last.label =
-            {chapter title.case "btitle" make.tag output}
+            {chapter "btitle" make.tag output}
             'skip$
            if$
         }
       if$  		
   		}
-  		{format.title "t" change.case$ "ctitle" make.tag output}
+  		{format.title  "ctitle" make.tag output}
    	if$
 	%new.sentence
 	format.middle.editors
@@ -2081,7 +2081,7 @@ FUNCTION {incollection}
 	if$
 	format.date output
 	new.sentence
-  format.title "t" change.case$ "ctitle" make.tag output
+  format.title  "ctitle" make.tag output
 	%new.sentence
 	format.middle.editors
   format.series.vol.booktitle
@@ -2118,7 +2118,7 @@ FUNCTION {manual}
   		
 	title empty$
     'skip$
-    {format.title title.case "btitle" make.tag output}
+    {format.title "btitle" make.tag output}
   if$
   format.same.end
 }
@@ -2183,7 +2183,7 @@ FUNCTION {proceedings}
   
 	format.date output
 	new.sentence
-  format.title title.case "btitle" make.tag output
+  format.title "btitle" make.tag output
   format.series.vol.booktitle
 	format.same.end
 }	
@@ -2683,7 +2683,7 @@ REVERSE {reverse.pass}
 
 FUNCTION {write.preamble}
 { "\begin{thebibliography}{" number.label int.to.str$ * "}" * write$ newline$
-	"% BibTex style file: ios2-nameyear.bst, 2017-01-03" write$ newline$
+	"% BibTex style file: ios2-nameyear.bst, 2017-04-26" write$ newline$
 	"\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi" write$ newline$
 	"\ifx \binits  \undefined \def \binits#1{#1} \fi" write$ newline$
 	"\ifx \bauthor  \undefined \def \bauthor#1{#1} \fi" write$ newline$
