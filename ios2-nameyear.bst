@@ -2296,7 +2296,7 @@ FUNCTION {assign.opt}{
 }
 
 FUNCTION {set.default.opt}{	
-  "unsort,nameyear" 'list.string :=
+  "sort,nameyear" 'list.string :=
 }
 
 EXECUTE {set.default.opt}
@@ -2683,7 +2683,7 @@ REVERSE {reverse.pass}
 
 FUNCTION {write.preamble}
 { "\begin{thebibliography}{" number.label int.to.str$ * "}" * write$ newline$
-	"% BibTex style file: ios2-nameyear.bst, 2017-04-26" write$ newline$
+	"% BibTex style file: ios2-nameyear.bst, 2017-08-31" write$ newline$
 	"\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi" write$ newline$
 	"\ifx \binits  \undefined \def \binits#1{#1} \fi" write$ newline$
 	"\ifx \bauthor  \undefined \def \bauthor#1{#1} \fi" write$ newline$
