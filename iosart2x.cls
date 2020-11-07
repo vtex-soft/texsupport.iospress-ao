@@ -66,8 +66,8 @@
 %%
 
 \def\fmt@name{iosart2x}
-\def\fmt@date{2020/04/23}
-\def\fmt@version{1.3.16}
+\def\fmt@date{2020/11/06}
+\def\fmt@version{1.3.19}
 \NeedsTeXFormat{LaTeX2e}[2000/01/26]
 \ProvidesClass\fmt@name
               [\fmt@date\space v\fmt@version\space IOS Press]
@@ -94,11 +94,13 @@
     \RequirePackage[dvips,counterclockwise,figuresright]{rotating}%
     }%
   }
+\newif\ifnumberlines \numberlinestrue
 \DeclareOption{crcready}{%
   \AtBeginDocument{%
-    \gdef\rtitleheadline{}%
-    \gdef\@copyright{}%
-    \pagestyle{empty}%
+    %\gdef\rtitleheadline{}%
+    %\gdef\@copyright{}%
+    %\pagestyle{empty}%
+    \numberlinesfalse
     \relax
     }%
   }%
@@ -1312,7 +1314,7 @@
       }%
     }%
   }
-\csdef{@id@line}{%
+\def\journal@idline{%
   \raise3pc\hbox{%
     \special{vtex:bmc.artifact.idline}% for dvi differ
     \parbox[t]{\textwidth}{%
@@ -1323,6 +1325,12 @@
     \special{vtex:emc.artifact.idline}%
     }%
   }
+\def\@id@line{\journal@idline}%
+\AtBeginDocument{%
+  \ifdefined\suppress@info
+    \let\journal@idline\relax
+  \fi
+  }%
 \def\vtexed#1{}
 \g@addto@macro\PROOF\SETGRID
 
@@ -1659,6 +1667,12 @@
   \csname\copyright@type @copyright@line\endcsname
   }
 \def\@copyright{%
+  \expandafter\ifstrequal\expandafter{\@JID}{ICG}{%
+    \vskip-2.5\baselineskip
+    }{}%
+  \expandafter\ifstrequal\expandafter{\@JID}{FRL}{%
+    \vskip-2.5\baselineskip
+    }{}%
   \if@open@access
     \mbox{%
       \rlap{%
